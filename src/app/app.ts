@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
+import { Navbar } from './features/navbar/navbar';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [
+    RouterOutlet,
+    Navbar],
   template: `
-    <h1>Welcome to {{title}}!</h1>
-
+    <app-navbar></app-navbar>
     <router-outlet />
   `,
   styles: [],
 })
 export class App {
-  protected title = 'angular-corsi';
+  
 }
