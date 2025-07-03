@@ -15,8 +15,6 @@ import { JsonPipe } from '@angular/common';
         <li>{{ corso.nome }} - {{corso.annoAccademico}}</li>
       </div>
     }
-    
-      <pre>{{ corsi | json }}</pre>
   `,
   styles: ``
 })
