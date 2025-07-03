@@ -10,9 +10,9 @@ import { JsonPipe } from '@angular/common';
   template: `
     <h1>Docenti</h1>
     <h4>Elenco dei docenti:</h4>
-    @for(corso of corsi; track corso.id) {
+    @for(docente of docenti; track docente.id) {
       <div>
-        <li>{{ corso.docenteDTOLight.nome }}  {{corso.docenteDTOLight.cognome}} --> {{corso.nome}}</li>
+        <li>{{ docente.nome }}  {{docente.cognome}} --> {{corso.nome}}</li>
       </div>
     }
     
@@ -21,12 +21,12 @@ import { JsonPipe } from '@angular/common';
 })
 export default class Docenti implements OnInit {
   http = inject(HttpClient)
-  corsi: any[] = [];
+  docenti: any[] = [];
 
   ngOnInit(): void {
-      this.http.get<any[]>('http://localhost:8080/corsi/list')
+      this.http.get<any[]>('http://localhost:8080/docenti/list')
       .subscribe( res => {
-        this.corsi = res;
+        this.docenti = res;
     });
   }
 
