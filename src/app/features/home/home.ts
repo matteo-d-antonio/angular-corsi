@@ -1,6 +1,7 @@
 import { Component, effect, inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { JsonPipe } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -19,14 +20,15 @@ import { JsonPipe } from '@angular/common';
   styles: ``
 })
 export default class Home implements OnInit {
-  http = inject(HttpClient)
+  http = inject(HttpClient);
   corsi: any[] = [];
+  cdr = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
-      this.http.get<any[]>('http://localhost:8080/corsi/list')
-      .subscribe( res => {
-        console.log('Corsi ricevuti:', res);
+    this.http.get<any[]>('http://localhost:8080/corsi/list')
+      .subscribe(res => {
         this.corsi = res;
-    });
+        this.cdr.detectChanges(); // Trigger change detection
+      });
   }
 }
