@@ -10,7 +10,7 @@ import { JsonPipe } from '@angular/common';
   template: `
     <h1>Corsi</h1>
     <h4>Elenco dei corsi disponibili:</h4>
-    @for(corso of corsi; track corso.id) {
+    @for(corso of corsi; track corso.nome) {
       <div>
         <li>{{ corso.nome }} - {{corso.annoAccademico}}</li>
       </div>
@@ -25,6 +25,7 @@ export default class Home implements OnInit {
   ngOnInit(): void {
       this.http.get<any[]>('http://localhost:8080/corsi/list')
       .subscribe( res => {
+        console.log('Corsi ricevuti:', res);
         this.corsi = res;
     });
   }

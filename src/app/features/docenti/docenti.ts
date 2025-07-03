@@ -12,10 +12,9 @@ import { JsonPipe } from '@angular/common';
     <h4>Elenco dei docenti:</h4>
     @for(docente of docenti; track docente.id) {
       <div>
-        <li>{{ docente.nome }}  {{docente.cognome}} --> {{corso.nome}}</li>
+        <li>{{ docente.nome }}  {{docente.cognome}} </li>
       </div>
     }
-    
   `,
   styles: ``
 })
