@@ -44,7 +44,7 @@ export default class Home implements OnInit {
     this.http.get<any[]>('http://localhost:8080/corsi/list')
       .subscribe(res => {
         this.corsi = res;
-        this.cdr.detectChanges(); // Trigger change detection
+        this.cdr.detectChanges();
       });
   }
 
@@ -53,7 +53,7 @@ export default class Home implements OnInit {
     this.http.delete(`http://localhost:8080/corsi/${id}`)
       .subscribe({
         next: () => {
-          // Rimuovi il corso dalla lista localmente (senza dover ricaricare la pagina)
+          
           this.corsi = this.corsi.filter(d => d.id !== id);
           this.cdr.detectChanges();
         },
