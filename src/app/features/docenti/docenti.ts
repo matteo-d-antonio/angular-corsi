@@ -16,17 +16,18 @@ import { ChangeDetectorRef } from '@angular/core';
     </div>
     <h4>Elenco dei docenti:</h4>
     </div>
-    @for(docente of docenti; track docente.nome) {
+    @for(docente of docenti; track docente.id) {
       <div class="card" style="width: 18rem; margin: 10px; display: inline-block; background-color:rgb(57, 57, 57); color: white;">
         <div class="card-body">
-          <h5 class="card-title">{{ docente.nome }}  {{docente.cognome}}</h5>
+          <h4 class="card-title">{{ docente.nome }}  {{docente.cognome}}</h4>
           <div class="ms-card-btn">
-          <a href="/docenti/modifica" class="btn btn btn-outline-light">modifica</a>
-          <a href="#" class="btn btn btn-outline-danger">elimina</a>
+          <a [routerLink]="['/docenti/modifica', docente.id]" class="btn btn btn-outline-light">modifica</a>
+          <button (click)="eliminaDocente(docente.id)" class="btn btn btn-outline-danger">elimina</button>
           </div>
         </div>
       </div>
     }
+    <pre>{{ docenti | json }}</pre>
   `,
   styles: ``
 })
@@ -39,8 +40,25 @@ export default class Docenti implements OnInit {
     this.http.get<any[]>('http://localhost:8080/docenti/list')
       .subscribe(res => {
         this.docenti = res;
-        this.cdr.detectChanges(); // Trigger change detection
+        this.cdr.detectChanges();
       });
   }
+
+  eliminaDocente(id: number) {
+  if (confirm('Sei sicuro di voler eliminare questo docente?')) {
+    this.http.delete(`http://localhost:8080/docenti/${id}`)
+      .subscribe({
+        next: () => {
+         
+          this.docenti = this.docenti.filter(d => d.id !== id);
+          this.cdr.detectChanges();
+        },
+        error: (err) => {
+          console.error('Errore durante l\'eliminazione del corso:', err);
+          alert('Errore durante l\'eliminazione.');
+        }
+      });
+  }
+}
 
 }

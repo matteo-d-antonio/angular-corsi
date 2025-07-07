@@ -19,13 +19,13 @@ import { RouterOutlet, RouterLink } from '@angular/router';
     </div>
     <h4>Elenco dei corsi disponibili:</h4>
     </div>
-    @for(corso of corsi; track corso.nome) {
+    @for(corso of corsi; track corso.id) {
       <div class="card" style="width: 18rem; margin: 10px; display: inline-block; background-color:rgb(57, 57, 57); color: white;">
-        <div class="card-body">
+        <div import class="card-body">
           <h4 class="card-title">{{ corso.nome}} - {{ corso.annoAccademico }}</h4>
           <div class="ms-card-btn">
-          <a routerLink="/home/modifica" class="btn btn btn-outline-light">modifica</a>
-          <a href="#" class="btn btn btn-outline-danger">elimina</a>
+          <a [routerLink]="['/home/modifica', corso.id]" class="btn btn btn-outline-light">modifica</a>
+          <button (click)="eliminaCorso(corso.id)" class="btn btn btn-outline-danger">elimina</button>
           </div>
         </div>
       </div>
@@ -47,4 +47,21 @@ export default class Home implements OnInit {
         this.cdr.detectChanges(); // Trigger change detection
       });
   }
+
+  eliminaCorso(id: number) {
+  if (confirm('Sei sicuro di voler eliminare questo corso?')) {
+    this.http.delete(`http://localhost:8080/corsi/${id}`)
+      .subscribe({
+        next: () => {
+          // Rimuovi il corso dalla lista localmente (senza dover ricaricare la pagina)
+          this.corsi = this.corsi.filter(d => d.id !== id);
+          this.cdr.detectChanges();
+        },
+        error: (err) => {
+          console.error('Errore durante l\'eliminazione del corso:', err);
+          alert('Errore durante l\'eliminazione.');
+        }
+      });
+  }
+ }
 }
