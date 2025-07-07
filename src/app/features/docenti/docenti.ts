@@ -2,11 +2,14 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { JsonPipe } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
+import { RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-docenti',
   imports: [
-    JsonPipe
+    JsonPipe,
+    RouterOutlet,
+    RouterLink
   ],
   template: `
     <div class="ms-title">
@@ -27,7 +30,6 @@ import { ChangeDetectorRef } from '@angular/core';
         </div>
       </div>
     }
-    <pre>{{ docenti | json }}</pre>
   `,
   styles: ``
 })
@@ -54,7 +56,7 @@ export default class Docenti implements OnInit {
           this.cdr.detectChanges();
         },
         error: (err) => {
-          console.error('Errore durante l\'eliminazione del corso:', err);
+          console.error('Errore durante l\'eliminazione del docente:', err);
           alert('Errore durante l\'eliminazione.');
         }
       });

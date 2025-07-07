@@ -9,6 +9,6 @@ export const routes: Routes = [
     {path: 'docenti/nuovo', loadComponent: () => import('./features/docenti/util/nuovoDocente').then(m => m.NuovoDocente)},
     {path: 'docenti/modifica/:id', loadComponent: () => import('./features/docenti/util/modificaDocente').then(m => m.ModificaDocente)},
     {path: 'discenti/nuovo', loadComponent: () => import('./features/discenti/util/nuovoDiscente').then(m => m.NuovoDiscente)},
-    {path: 'discenti/modifica', loadComponent: () => import('./features/discenti/util/modificaDiscente').then(m => m.ModificaDiscente)},
+    {path: 'discenti/modifica/:id', loadComponent: () => import('./features/discenti/util/modificaDiscente').then(m => m.ModificaDiscente)},
     {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
