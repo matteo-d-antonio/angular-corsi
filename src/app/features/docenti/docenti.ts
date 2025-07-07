@@ -21,7 +21,7 @@ import { ChangeDetectorRef } from '@angular/core';
         <div class="card-body">
           <h5 class="card-title">{{ docente.nome }}  {{docente.cognome}}</h5>
           <div class="ms-card-btn">
-          <a href="#" class="btn btn btn-outline-light">modifica</a>
+          <a href="/docenti/modifica" class="btn btn btn-outline-light">modifica</a>
           <a href="#" class="btn btn btn-outline-danger">elimina</a>
           </div>
         </div>

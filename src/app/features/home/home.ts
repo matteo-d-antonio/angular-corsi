@@ -1,18 +1,21 @@
-import { Component, effect, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { JsonPipe } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
+import { RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   imports: [
-    JsonPipe
+    JsonPipe,
+    RouterOutlet,
+    RouterLink
   ],
   template: `
     <div class="ms-title">
     <div class="ms-card-info">
       <h1>Corsi</h1>
-      <a href="/corsi/nuovo" class="btn btn-primary">Aggiungi Corso</a>
+      <a routerLink="/home/nuovo" class="btn btn-primary">Aggiungi Corso</a>
     </div>
     <h4>Elenco dei corsi disponibili:</h4>
     </div>
@@ -21,7 +24,7 @@ import { ChangeDetectorRef } from '@angular/core';
         <div class="card-body">
           <h4 class="card-title">{{ corso.nome}} - {{ corso.annoAccademico }}</h4>
           <div class="ms-card-btn">
-          <a href="#" class="btn btn btn-outline-light">modifica</a>
+          <a routerLink="/home/modifica" class="btn btn btn-outline-light">modifica</a>
           <a href="#" class="btn btn btn-outline-danger">elimina</a>
           </div>
         </div>
