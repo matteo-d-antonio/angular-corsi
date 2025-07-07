@@ -9,15 +9,28 @@ import { ChangeDetectorRef } from '@angular/core';
     JsonPipe
   ],
   template: `
-    <h1>Corsi</h1>
+    <div class="ms-title">
+    <div class="ms-card-info">
+      <h1>Corsi</h1>
+      <a href="/corsi/nuovo" class="btn btn-primary">Aggiungi Corso</a>
+    </div>
     <h4>Elenco dei corsi disponibili:</h4>
+    </div>
     @for(corso of corsi; track corso.nome) {
-      <div>
-        <li>{{ corso.nome }} - {{corso.annoAccademico}}</li>
+      <div class="card" style="width: 18rem; margin: 10px; display: inline-block; background-color:rgb(57, 57, 57); color: white;">
+        <div class="card-body">
+          <h4 class="card-title">{{ corso.nome}} - {{ corso.annoAccademico }}</h4>
+          <div class="ms-card-btn">
+          <a href="#" class="btn btn btn-outline-light">modifica</a>
+          <a href="#" class="btn btn btn-outline-danger">elimina</a>
+          </div>
+        </div>
       </div>
     }
   `,
-  styles: ``
+  styles: `
+    
+  `
 })
 export default class Home implements OnInit {
   http = inject(HttpClient);

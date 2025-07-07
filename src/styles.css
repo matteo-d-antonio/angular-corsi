@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+.ms-title {
+    margin: 10px;
+}
+.ms-card-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ms-card-btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
