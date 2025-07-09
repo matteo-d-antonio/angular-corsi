@@ -11,27 +11,7 @@ import { RouterOutlet, RouterLink } from '@angular/router';
     RouterOutlet,
     RouterLink
   ],
-  template: `
-    <div class="ms-title">
-    <div class="ms-card-info">
-      <h1>Docenti</h1>
-      <a href="/docenti/nuovo" class="btn btn-primary">Aggiungi Docente</a>
-    </div>
-    <h4>Elenco dei docenti:</h4>
-    </div>
-    @for(docente of docenti; track docente.id) {
-      <div class="card" style="width: 18rem; margin: 10px; display: inline-block; background-color:rgb(57, 57, 57); color: white;">
-        <div class="card-body">
-          <h4 class="card-title">{{ docente.nome }}  {{docente.cognome}}</h4>
-          <div class="ms-card-btn">
-          <a [routerLink]="['/docenti/modifica', docente.id]" class="btn btn btn-outline-light">modifica</a>
-          <button (click)="eliminaDocente(docente.id)" class="btn btn btn-outline-danger">elimina</button>
-          </div>
-        </div>
-      </div>
-    }
-    
-  `,
+  templateUrl: './docenti.html',
   styles: ``
 })
 export default class Docenti implements OnInit {

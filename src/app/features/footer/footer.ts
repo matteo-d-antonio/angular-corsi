@@ -3,14 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-footer',
   imports: [],
-  template: `
-  <div class="ms-footer">
-    <div class="ms-footer-content">
-      <p>©2025 Progetto Corsi. Tutti i diritti riservati.</p>
-      <p>Realizzato da Matteo</p>
-    </div>
-  </div>
-  `,
+  templateUrl: './footer.html',
   styles: `
   .ms-footer {
     background-color: rgb(35, 35, 35);
@@ -19,18 +12,6 @@ import { Component } from '@angular/core';
     position: fixed;
     bottom: 0;
     width: 100%;
-    }
-    .ms-footer-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    color: white;
-    }
-    .ms-footer-content p {
-    margin: 0 10px;
-    font-size: 16px;
     }
     `
 })

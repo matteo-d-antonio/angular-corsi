@@ -1,0 +1,18 @@
+<div class="ms-title">
+    <div class="ms-card-info">
+      <h1>Discenti</h1>
+      <a href="/discenti/nuovo" class="btn btn-primary">Aggiungi Discente</a>
+    </div>
+    <h4>Elenco dei discenti:</h4>
+    </div>
+    @for(discente of discenti; track discente.id) {
+      <div class="card" style="width: 18rem; margin: 10px; display: inline-block; background-color:rgb(57, 57, 57); color: white;">
+        <div class="card-body">
+          <h4 class="card-title">{{ discente.nome }}  {{discente.cognome}}</h4>
+          <div class="ms-card-btn">
+          <a [routerLink]="['/discenti/modifica', discente.id]" class="btn btn btn-outline-light">modifica</a>
+          <button (click)="eliminaDiscente(discente.id)" class="btn btn btn-outline-danger">elimina</button>
+          </div>
+        </div>
+      </div>
+    }
